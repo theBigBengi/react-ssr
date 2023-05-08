@@ -6962,7 +6962,7 @@ module.exports = Function.call.bind(Object.prototype.hasOwnProperty);
 
 
 
-var hyphenate = __webpack_require__(113);
+var hyphenate = __webpack_require__(112);
 
 var msPattern = /^ms-/;
 
@@ -7029,9 +7029,9 @@ module.exports = memoizeStringOnly;
 
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(116);
+  module.exports = __webpack_require__(115);
 } else {
-  module.exports = __webpack_require__(117);
+  module.exports = __webpack_require__(116);
 }
 
 
@@ -7042,15 +7042,31 @@ if (process.env.NODE_ENV === 'production') {
 "use strict";
 
 
-var express = __webpack_require__(54);
-var app = express();
-var React = __webpack_require__(16);
-var Home = __webpack_require__(110).default;
-var renderToString = __webpack_require__(111).renderToString;
+var _express = __webpack_require__(54);
+
+var _express2 = _interopRequireDefault(_express);
+
+var _react = __webpack_require__(16);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _server = __webpack_require__(110);
+
+var _Home = __webpack_require__(121);
+
+var _Home2 = _interopRequireDefault(_Home);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var app = (0, _express2.default)();
+app.use(_express2.default.static("public"));
 
 app.get("/", function (req, res) {
-  var content = renderToString(React.createElement(Home, null));
-  res.send(content);
+  var content = (0, _server.renderToString)(_react2.default.createElement(_Home2.default, null));
+
+  var html = "\n    <html>\n        <head></head>\n        <body>\n            <div id=\"root\">" + content + "</div>\n            <script src=\"bundle.js\"></script>\n        </body>\n    </html>\n  ";
+
+  res.send(html);
 });
 
 app.listen(4000, function () {
@@ -18019,41 +18035,15 @@ module.exports = ReactEntry;
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Home;
-
-var _react = __webpack_require__(16);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function Home() {
-  return _react2.default.createElement(
-    "div",
-    null,
-    "home"
-  );
+if (process.env.NODE_ENV === 'production') {
+  module.exports = __webpack_require__(111);
+} else {
+  module.exports = __webpack_require__(113);
 }
+
 
 /***/ }),
 /* 111 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(112);
-} else {
-  module.exports = __webpack_require__(114);
-}
-
-
-/***/ }),
-/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18105,7 +18095,7 @@ ya);Z.Properties[b]=0;Z.DOMAttributeNames[b]=a});E.injection.injectDOMPropertyCo
 
 
 /***/ }),
-/* 113 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18141,7 +18131,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 114 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18166,12 +18156,12 @@ var invariant = __webpack_require__(18);
 var require$$0 = __webpack_require__(48);
 var react = __webpack_require__(16);
 var emptyFunction = __webpack_require__(19);
-var propTypes = __webpack_require__(115);
+var propTypes = __webpack_require__(114);
 var emptyObject = __webpack_require__(17);
 var hyphenateStyleName = __webpack_require__(50);
 var memoizeStringOnly = __webpack_require__(51);
 var checkPropTypes = __webpack_require__(27);
-var camelizeStyleName = __webpack_require__(120);
+var camelizeStyleName = __webpack_require__(119);
 var stream = __webpack_require__(15);
 
 /**
@@ -21400,7 +21390,7 @@ module.exports = ReactDOMServerNodeEntry;
 
 
 /***/ }),
-/* 115 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -21416,16 +21406,16 @@ if (process.env.NODE_ENV !== 'production') {
   // By explicitly using `prop-types` you are opting into new development behavior.
   // http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(118)(ReactIs.isElement, throwOnDirectAccess);
+  module.exports = __webpack_require__(117)(ReactIs.isElement, throwOnDirectAccess);
 } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(119)();
+  module.exports = __webpack_require__(118)();
 }
 
 
 /***/ }),
-/* 116 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21447,7 +21437,7 @@ exports.isValidElementType=function(a){return"string"===typeof a||"function"===t
 
 
 /***/ }),
-/* 117 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21635,7 +21625,7 @@ exports.typeOf = typeOf;
 
 
 /***/ }),
-/* 118 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22252,7 +22242,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
 
 /***/ }),
-/* 119 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22324,7 +22314,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 120 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22339,7 +22329,7 @@ module.exports = function() {
 
 
 
-var camelize = __webpack_require__(121);
+var camelize = __webpack_require__(120);
 
 var msPattern = /^-ms-/;
 
@@ -22367,7 +22357,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 121 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22400,6 +22390,38 @@ function camelize(string) {
 }
 
 module.exports = camelize;
+
+/***/ }),
+/* 121 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Home;
+
+var _react = __webpack_require__(16);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Home() {
+  return _react2.default.createElement(
+    "div",
+    null,
+    _react2.default.createElement(
+      "button",
+      { onClick: function onClick() {
+          return console.log("Hi there!");
+        } },
+      "Say hello"
+    )
+  );
+}
 
 /***/ })
 /******/ ]);
